@@ -3,7 +3,7 @@ This is a comment block. It won't be read as an Ink story.
 Comments are very useful for leaving ideas for story and functionalty
 
 This exercise will demonstrate the following in the example video:
- *Basic Choices 
+ * Basic Choices 
  * Knot structure 
  * Recurring choices 
  * Conditionals in descriptions
@@ -37,48 +37,55 @@ You are in the west. It is very dark, you can't see anything.
 
 == torch_pickup ==
 You now have a torch. May it light the way.
-* [Go Back] -> cave_mouth
++ [Go Back] -> cave_mouth
 -> END
 
 == east_tunnel_lit ==
-The light of your torch glints off of the thousands of coins in the room.
--> END
+The light of your torch glints off of the thousands of coins in the room. {not rucksack_pickup: Ironically enough, in the corner of the room you see a rucksack on the floor.}
+* [Pick up rucksack]  -> rucksack_pickup
+* [Keep searching the room] ->END
+* {rucksack_pickup}[Stuff the bag with as many coins as you can] -> END
 
-. . . . end of example . . . 
+==rucksack_pickup==
+You put on the rucksack 
+->east_tunnel_lit
 
 == west_tunnel_lit ==
  The light of your torch reveals two more tunnels. You can proceed to either the left or right.
- * [Go Left] -> left_tunnel
- * [Go Right] -> right_tunnel
- * [Go Back] -> cave_mouth
+ + [Go Left] -> left_tunnel
+ + [Go Right] -> right_tunnel
+ + [Go Back] -> cave_mouth
  ->END
  
- /*
- Questions:
- If I return to west tunnel lit, why does it not show the option to go back the way I just came from? Would this be an example of me needing a conditional?? 
- */
  
  == left_tunnel ==
- As you walk further you notice green slime on the cave walls and a low grumbling sound.
- * [Continue down the tunnel] -> 
+ As you walk further you notice green slime on the cave walls and a low grumbling sound. 
+ + [Continue down the tunnel] 
  ->END
- * [Go Back] ->west_tunnel_lit
+ + [Go Back] ->west_tunnel_lit
  ->END
   
  == right_tunnel ==
  As you proceed you see a door up ahead with a candle burning inside a lantern hanging above the door.
- * [Continue down the tunnel] -> In_front_of_door
+ + [Continue down the tunnel] -> In_front_of_door
  ->END
- *[Go Back] ->west_tunnel_lit
+ +[Go Back] ->west_tunnel_lit
  ->END
  
  == In_front_of_door == 
   You don't hear any noise coming from the other side of the door. You are unsure what to do.
- * [Knock on the door.]
+ + [Knock on the door.] -> Someone_answers
  ->END
- * [Open the door.]
+ + [Open the door.]
  ->END
+ + [Go Back] ->right_tunnel 
+ -> END
  
+ ==Someone_answers==
+ You hear heavy footsteps approaching the door...the door swings wide open, a man glares at you in anger ... "What are you doing here!? It's not safe. You need to leave."
+ + Who are you? ->END
+ + Why isn't it safe? 
+ ->END 
  
  
  
